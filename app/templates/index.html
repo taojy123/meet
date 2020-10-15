@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>约聚</title>
+<style type="text/css">
+    .day {
+        margin: 5px;
+        padding: 3px;
+        background: orange;
+        border-radius: 10px;
+        display: inline-block;
+    }
+    .btn {
+        background-color: rgb(27, 154, 247);
+        border-radius: 200px;
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+        margin: 5px;
+        padding: 0 30px;
+        text-align: center;
+        text-decoration-line: none;
+    }
+</style>
+<script src="http://tslow.cn/static/js/jquery-1.10.2.js"></script>
+
+</head>
+
+<body>
+
+<h2>约聚 - 邀约聚会时间</h2>
+
+<p>目前报名参聚人员：</p>
+
+{% for member in members %}
+    <p>
+        {{ member.name }}, 可参聚日子：
+        {% for day in member.day_list %}
+            <span class="day">{{ day }}</span>
+        {% endfor %}
+    </p>
+{% endfor %}
+
+
+<p>
+    {% if member %}
+        <a href="/join?token={{ token }}" class="btn" id="submit">修改信息</a>
+    {% else %}
+        <a href="/join?token={{ token }}" class="btn" id="submit">报名参与</a>
+    {% endif %}
+</p>
+
+
+<script>
+    {% if msg %}
+        alert('{{ msg }}')
+        location.href = '/'
+    {% endif %}
+</script>
+
+</body>
+</html>
