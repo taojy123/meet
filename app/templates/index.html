@@ -51,12 +51,35 @@
 <p>
     {% if member %}
         <a href="/join?token={{ token }}" class="btn" id="submit">修改信息</a>
-        <a href="/reject?token={{ token }}" class="btn" id="submit">放弃参加</a>
+        <a href="/reject?token={{ token }}" onclick="return confirm('确定放弃？退出后，可以点击“报名参与” 再次参加。')" class="btn" style="background-color: coral">放弃参加</a>
     {% else %}
         <a href="/join?token={{ token }}" class="btn" id="submit">报名参与</a>
     {% endif %}
 </p>
 
+<hr>
+
+<h4>推荐日期</h4>
+
+{% for item in recommend %}
+    <p>
+        <span class="day">{{ item.day }}</span>
+        {% if item.is_full %}
+            所有人皆可参加
+        {% else %}
+            可参加人员
+            {% for m in item.members %}
+                {{ m.name }}
+            {% endfor %}
+        {% endif %}
+    </p>
+{% endfor %}
+
+<hr>
+
+<div style="text-align: center">
+    <img src="http://qiniu.athenagu.com/docs/qrcode.png" style="width: 50vw;">
+</div>
 
 <script>
     {% if msg %}
