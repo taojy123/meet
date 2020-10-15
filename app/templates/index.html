@@ -51,6 +51,7 @@
 <p>
     {% if member %}
         <a href="/join?token={{ token }}" class="btn" id="submit">修改信息</a>
+        <a href="/reject?token={{ token }}" class="btn" id="submit">放弃参加</a>
     {% else %}
         <a href="/join?token={{ token }}" class="btn" id="submit">报名参与</a>
     {% endif %}
