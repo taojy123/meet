@@ -67,7 +67,7 @@
         {% if item.is_full %}
             所有人皆可参加
         {% else %}
-            可参加人员
+            可参加:
             {% for m in item.members %}
                 {{ m.name }}
             {% endfor %}
